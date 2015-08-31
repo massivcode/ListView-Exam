@@ -1,9 +1,14 @@
 
 package com.prchoe.listviewexam;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
     private void initListView() {
         mListView = (ListView)findViewById(R.id.list_view);
         mListView.setAdapter(mAdapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "position : " + position, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mData.get(position).getPhoneNumber()));
+                startActivity(intent);
+            }
+        });
     }
 
 }
