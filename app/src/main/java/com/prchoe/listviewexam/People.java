@@ -12,10 +12,10 @@ public class People {
     public People() {
     }
 
-    public People(String name, String phoneNumber, int imageResourceId) {
+    public People(int imageResourceId, String name, String phoneNumber) {
+        this.imageResourceId = imageResourceId;
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.imageResourceId = imageResourceId;
     }
 
     public String getName() {

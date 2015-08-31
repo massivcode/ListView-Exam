@@ -4,17 +4,14 @@ package com.prchoe.listviewexam;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private List<Map<String, String>> mData;
-    private SimpleAdapter mAdapter;
+    private List<People> mData;
+    private CustomAdapter mAdapter;
     private ListView mListView;
 
     @Override
@@ -38,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         mData = new ArrayList();
 
-        for (int i = 1; i <= 100; i++) {
-            Map<String, String> data = new HashMap<>();
-            data.put("item", "Item " + i);
-            data.put("subitem", "Sub Item " + i);
-            mData.add(data);
+            mData.add(new People(R.drawable.elsa1, "엘사1", "010-1111-1111"));
+            mData.add(new People(R.drawable.elsa2, "엘사2", "010-1234-5678"));
+
+        for (int i = 1; i <= 30; i++) {
+            mData.add(new People(R.mipmap.ic_launcher, "안드로이드", "1234-5678"));
         }
     }
 
@@ -56,9 +53,7 @@ public class MainActivity extends AppCompatActivity {
 //        mAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, mData);
 
         // Parameter : Context, 데이터 객체, 레이아웃, 데이터를 get할 key의 배열들, 데이터를 표시할 레이아웃의 텍스트 1,2
-        mAdapter = new SimpleAdapter(getApplicationContext(), mData, android.R.layout.simple_list_item_2,
-                new String[] {"item", "subitem"},
-                new int[] {android.R.id.text1, android.R.id.text2});
+        mAdapter = new CustomAdapter(getApplicationContext(), mData);
 
     }
 
