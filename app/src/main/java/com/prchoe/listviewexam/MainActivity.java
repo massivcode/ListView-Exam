@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // 명시적 인텐트
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-                intent.putExtra("Data", mData.get(position));
+                intent.putExtra("data", mData.get(position));
                 startActivity(intent);
             }
         });
