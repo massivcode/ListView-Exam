@@ -1,9 +1,11 @@
 package com.prchoe.listviewexam;
 
+import java.io.Serializable;
+
 /**
  * Created by massivCode on 2015-08-31.
  */
-public class People {
+public class People implements Serializable{
 
     private String name;
     private String phoneNumber;

@@ -2,13 +2,11 @@
 package com.prchoe.listviewexam;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             mData.add(new People(R.drawable.elsa2, "엘사2", "010-1234-5678"));
 
         for (int i = 1; i <= 30; i++) {
-            mData.add(new People(R.mipmap.ic_launcher, "안드로이드", "1234-5678"));
+            mData.add(new People(R.mipmap.ic_launcher, "안드로이드" + i, "1234-5678"));
         }
     }
 
@@ -70,9 +68,14 @@ public class MainActivity extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "position : " + position, Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mData.get(position).getPhoneNumber()));
+                // 암시적 인텐트
+                // Uri uri = Uri.parse("tel:" + mData.get(position).getPhoneNumber());
+                // Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+
+                // 명시적 인텐트
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+                intent.putExtra("Data", mData.get(position));
                 startActivity(intent);
             }
         });
